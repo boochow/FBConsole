@@ -28,3 +28,7 @@ help()                      # and print something
 set_fb_console(oled, False) # then disconnect OLED from REPL
 theScreen.cls()             # and clear OLED screen
 ```
+
+## Limitation
+
+Only newlines and backspaces are supported as control charcters. All other control characters such as arrow keys are not supported. (see `_putc()` function)
