@@ -2,21 +2,21 @@ import framebuf
 import uio
 
 class FBConsole(uio.IOBase):
-    def __init__(self, framebuf, bgcolor=0, fgcolor=-1, width=-1, height=-1, readobj=None):
+    def __init__(self, fb, bgcolor=0, fgcolor=-1, width=-1, height=-1, readobj=None):
         self.readobj = readobj
-        self.fb = framebuf
+        self.fb = fb
         if width > 0:
             self.width=width
         else:
             try:
-                self.width=framebuf.width
+                self.width=fb.width
             except:
                 raise ValueError
         if height > 0:
             self.height=height
         else:
             try:
-                self.height=framebuf.height
+                self.height=fb.height
             except:
                 raise ValueError
         self.bgcolor = bgcolor
@@ -73,8 +73,8 @@ class FBConsole(uio.IOBase):
         return len(buf)
 
     def readinto(self, buf, nbytes=0):
-        if readobj != None:
-            return readobj.readinto(buf, nbytes)
+        if self.readobj != None:
+            return self.readobj.readinto(buf, nbytes)
         else:
             return None
         
