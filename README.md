@@ -15,7 +15,7 @@ oled = SSD1306_I2C(128, 64, i2c)
 
 from fbconsole import FBConsole
 import os
-scr = FBConsole(fb)
+scr = FBConsole(oled)
 os.dupterm(scr)        # redirect REPL output to OLED
 help()                 # and print something
 os.dupterm(None)       # then disconnect OLED from REPL
