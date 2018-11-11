@@ -6,7 +6,7 @@ You can redirect REPL to any framebuffer devices.
 
 ## Usage
 
-The example below duplicates REPL output to SSD1306 OLED connected to ESP32 (SDA=Pin22, SCL=Pin21).
+The example below duplicates REPL output to SSD1306 OLED connected to ESP32 via I2C(SDA=Pin22, SCL=Pin21).
 ```
 from machine import Pin, I2C
 from ssd1306 import SSD1306_I2C
