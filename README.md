@@ -21,3 +21,5 @@ help()                 # and print something
 os.dupterm(None)       # then disconnect OLED from REPL
 scr.cls()              # and clear OLED screen
 ```
+
+![top-page](https://raw.githubusercontent.com/boochow/FBConsole/images/dupterm-oled.jpg)
