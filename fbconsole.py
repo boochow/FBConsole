@@ -111,9 +111,9 @@ class FBConsole(uio.IOBase):
             self.x -= 1
 
     def _clear_cursor_eol(self):
-        self.fb.fill_rect(self.x * 8, self.y * self.lineheight, 128, self.lineheight, self.bgcolor)
+        self.fb.fill_rect(self.x * 8, self.y * self.lineheight, self.width, self.lineheight, self.bgcolor)
         for l in range(self.y + 1, self.y_end + 1):
-            self.fb.fill_rect(0, l * self.lineheight, 128, self.lineheight, self.bgcolor)
+            self.fb.fill_rect(0, l * self.lineheight, self.width, self.lineheight, self.bgcolor)
         self.y_end = self.y
         
     def _draw_cursor(self, color):
