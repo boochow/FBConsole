@@ -34,6 +34,8 @@ Only LCDs with ST7735S(and maybe ST7735R) are supported because this wrapper cla
 
 petme128.py is a font converted from ``petme128-font.c`` used in the framebuf class of MicroPython.
 
+## ST7735fb usage
+
 ```
 # This example is for ESP32 + ST7735S TFT LCD
 from ST7735 import TFT
@@ -59,3 +61,4 @@ scr = FBConsole(fb, TFT.BLACK, TFT.WHITE)
 import os
 os.dupterm(scr) 
 ```
+![top-page](https://raw.githubusercontent.com/boochow/FBConsole/images/st7735-dupterm.jpg)
