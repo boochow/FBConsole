@@ -22,4 +22,40 @@ os.dupterm(None)       # then disconnect OLED from REPL
 scr.cls()              # and clear OLED screen
 ```
 
+## ST7735 Wrapper
+
+ST7735fb.py is a wrapper class to use FBConsole with ST7735-based small TFT LCD.
+It provides some of FrameBuffer class APIs necessary to use FBConsole.
+Use this with [ST7735 driver for MicroPython](https://github.com/boochow/MicroPython-ST7735).
+Only LCDs with ST7735S(and maybe ST7735R) are supported because this wrapper class requires hardware scroll functionality.
+
+## petme128 font
+
+petme128.py is a font converted from ``petme128-font.c`` used in the framebuf class of MicroPython.
+
+```
+# This example is for ESP32 + ST7735S TFT LCD
+from ST7735 import TFT
+from machine import SPI,Pin
+spi = SPI(2, baudrate=20000000, polarity=0, phase=0, sck=Pin(14), mosi=Pin(13), miso=Pin(12))
+tft=TFT(spi,16,17,18)
+tft.initb2()
+tft.rgb(True)
+
+# Assign 2 pixels for fixed and invisible area
+# (ST7735S frame buffer vertical size is 162 pixels)
+tft.setvscroll(1, 1)
+
+# Wrapper object for FBConsole
+from ST7735fb import TFTfb
+from petme128 import petme128
+fb = TFTfb(tft, petme128)
+
+# redirect MicroPython terminal to ST7735
+from fbconsole import FBConsole
+scr = FBConsole(fb, TFT.BLACK, TFT.WHITE)
+
+import os
+os.dupterm(scr) 
+```
 ![top-page](https://raw.githubusercontent.com/boochow/FBConsole/images/dupterm-oled.gif)
